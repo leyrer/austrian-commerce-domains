@@ -6,10 +6,10 @@
 HEADER = Domain Name,Domain Type,Agency,City,State
 
 data/source/guetezeichen-at-domains.csv:
-	perl guetezeichen-scraper.pl | sort -d -f -t',' -k1,1 > $@
+	perl guetezeichen-scraper.pl > $@
 
 data/source/guetezeichen-at-urls.csv:
-	perl guetezeichen-scraper.pl KEEP_URLS | sort -d -f -t',' -k1,1 > $@
+	perl guetezeichen-scraper.pl KEEP_URLS > $@
 
 data/domains.guetezeichen-at.csv: data/source/guetezeichen-domains.csv
 	echo ${HEADER} > $@
