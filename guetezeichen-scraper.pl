@@ -34,8 +34,10 @@ foreach my $row (@td) {
 		$desc =~ s/\,/\;/gi;	# cleanup for csv export
 		my $href = $shopurl->attr('href');
 		$href =~ s/^https?:\/\///;
-		if(not defined $ARGV[0]) { # strip www hostname and URL path unless explicitly told
+		if(defined $ARGV[0]) { # strip www hostname unless explicitly forbidden
 			$href =~ s/^(www\.)//;
+		}
+		if(not defined $ARGV[1]) { # strip URL path unless explicitly told to keep
 			my @words = split('/', $href);
 			$href = $words[0];
 		}
