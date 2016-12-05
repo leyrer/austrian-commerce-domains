@@ -17,7 +17,7 @@ data/domains.guetezeichen-at.csv: data/source/guetezeichen-domains.csv
 
 data/domains.csv: data/source/guetezeichen-at-domains.csv
 	echo ${HEADER} > $@
-	tail -q -n +2 $+ >> $@
+	tail -q -n +2 $+ | sort >> $@
 
 clean-sources:
 	rm -f data/source/guetezeichen-at-domains.csv
