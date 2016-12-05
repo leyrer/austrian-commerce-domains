@@ -7,12 +7,16 @@ use feature qw(say);
 use Data::Dumper;
 use HTML::TreeBuilder::XPath;
 use WWW::Mechanize;
+use Getopt::Long;
 
 my $url = 'https://www.guetezeichen.at/zertifizierte-shops/guetezeichen';
 my $DEBUG = 0;
 my $type = 'Österreichisches E-Commerce-Gütezeichen';
 
 binmode(STDOUT, ":utf8");
+
+my ($removewww, $removepath);
+GetOptions ('remove-www' => \$removewww, 'remove-path' => \$removepath);
 
 my ($sec,$min,$hour,$day,$month,$yr19,@rest) =   localtime(time);#####
 print "Source: Verein zur Förderung der kundenfreundlichen Nutzung des Internet c/o ÖIAT, answered on " . sprintf("%4.4d-%2.2d-%2.2d", ($yr19+1900), ++$month, $day) . ": $url\n";
@@ -34,10 +38,10 @@ foreach my $row (@td) {
 		$desc =~ s/\,/\;/gi;	# cleanup for csv export
 		my $href = $shopurl->attr('href');
 		$href =~ s/^https?:\/\///;
-		if(defined $ARGV[0]) { # strip www hostname unless explicitly forbidden
+		if($removewww) {
 			$href =~ s/^(www\.)//;
 		}
-		if(not defined $ARGV[1]) { # strip URL path unless explicitly told to keep
+		if($removepath) {
 			my @words = split('/', $href);
 			$href = $words[0];
 		}
