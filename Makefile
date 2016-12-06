@@ -11,12 +11,20 @@ data/source/guetezeichen-at-domains.csv:
 data/source/guetezeichen-at-urls.csv:
 	perl guetezeichen-scraper.pl > $@
 
+data/domains-guetezeichen-at.csv: data/source/guetezeichen-at-domains.csv
+	echo ${HEADER} > $@
+	tail -q -n +2 $+ >> $@
+
+data/urls-guetezeichen.csv: data/source/guetezeichen-at-urls.csv
+	echo ${HEADER} > $@
+	tail -q -n +2 $+ >> $@
+
 data/source/handelsverband-domains.csv:
 	perl handelsverband-scraper.pl > $@
 
-data/domains.guetezeichen-at.csv: data/source/guetezeichen-domains.csv
+data/domains-handelsverband.csv: data/source/handelsverband-domains.csv
 	echo ${HEADER} > $@
-	tail -q -n +1 $+ >> $@
+	tail -q -n +2 $+ >> $@
 
 data/domains.csv: data/source/guetezeichen-at-domains.csv data/source/handelsverband-domains.csv
 	echo ${HEADER} > $@
@@ -30,4 +38,4 @@ clean-sources:
 clean: clean-sources
 	rm -f data/domains*
 
-all: data/domains.csv
+all: data/domains.csv 
