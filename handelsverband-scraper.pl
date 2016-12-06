@@ -19,6 +19,7 @@ binmode(STDOUT, ":utf8");
 my ($removewww, $removepath);
 GetOptions ('remove-www' => \$removewww, 'remove-path' => \$removepath);
 
+my ($sec,$min,$hour,$day,$month,$yr19,@rest) = localtime(time);
 print "# Source: Handelsverband Österreich | Austrian Retail Association, answered on " . sprintf("%4.4d-%2.2d-%2.2d", ($yr19+1900), ++$month, $day) . ": $url,,\n";
 
 my $tree= HTML::TreeBuilder::XPath->new;
