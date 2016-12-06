@@ -50,10 +50,7 @@ I'd love to have some help with this! Please feel free to [create an issue](http
 ## Ideas
 
 * scrape even more domains
-  * The WKO has a nice list
-* use certi
-  * try to get some domains with an [freedom of information request](https://fragdenstaat.de)
-  * look for domains in [minor interpellations](https://kleineanfragen.de)
+  * The WKO has a nice [list](https://firmen.wko.at/Web/SearchSimple.aspx)
 
 ## Thanks
 
